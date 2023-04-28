@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block head %}
+  {{ block.super }}
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="{% static 'js/autocomplete.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<h1>Введите параметры автомобиля</h1>
+<form method="post">
+{% csrf_token %}
+{{ form.as_p }}
+<button type="submit">Предсказать цену</button>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#id_brand').change(function() {
+            var brandId = $(this).val();
+            $.ajax({
+                url: '/models/',
+                data: {
+                    'brand': brandId
+                },
+                dataType: 'json',
+                success: function(data) {
+                    var modelSelect = $('#id_model');
+                    modelSelect.find('option').remove();
+                    $.each(data.models, function(index, value) {
+                      modelSelect.append($('<option>').text(value).attr('value', value));
+		   });
+
+                    modelSelect.prop
+                ('disabled', false);
+            }
+        });
+    });
+});
+</script>
+{% endblock %}
+
+var models_select = $("#id_model");
+models_select.empty();
+$.each(models, function(key, value) {
+    models_select.append($("<option></option>")
+        .attr("value", value[0]).text(value[1]));
+    });
+models_select.trigger('change');
+
+
+
