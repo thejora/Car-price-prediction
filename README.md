@@ -3,6 +3,6 @@ Creating a model in Python LightGBM for predicting car prices and a simple Djang
 
 Создание в Python LightGBM модели для предсказания цен на авто и простого Django веб-интерфейса для ее использования при помощи данных, спарсенных с популярного сайта объявлений при помощи библиотеки BeautifulSoup 
 
-Все шаги исследования подробно изложены в тетрадке Research Notebook
+Все шаги исследования изложены в тетрадке Research Notebook
 
 Итоговый вид веб-интрефейса и пример предсказания в файлах Interface и Prediction, реальное объявление в файле Target
